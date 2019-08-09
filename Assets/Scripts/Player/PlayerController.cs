@@ -1,25 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController
 {
-    // Start is called before the first frame update
-    void Start()
+    private readonly PlayerModel _playerModel;
+
+    [Inject]
+    public PlayerController(PlayerModel playerModel)
     {
+        _playerModel = playerModel;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMovementDirection(Vector2 direction)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Debug.Log("LMB pressed");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Debug.Log("RMB pressed");
-        }
+        _playerModel.RigidBody.velocity = direction * _playerModel.Speed;
     }
 }
