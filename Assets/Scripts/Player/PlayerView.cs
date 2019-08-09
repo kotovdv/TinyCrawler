@@ -4,16 +4,21 @@ using Zenject;
 
 public class PlayerView : MonoBehaviour
 {
-    private PlayerController PlayerController { get; set; }
+    private PlayerController _playerController;
 
     [Inject]
     public void Construct(PlayerController playerController)
     {
-        PlayerController = playerController;
+        _playerController = playerController;
     }
 
     public void OnMovement(InputValue value)
     {
-        PlayerController.SetMovementDirection(value.Get<Vector2>());
+        _playerController.Move(value.Get<Vector2>());
+    }
+
+    public void OnJump(InputValue value)
+    {
+        _playerController.Jump();
     }
 }
