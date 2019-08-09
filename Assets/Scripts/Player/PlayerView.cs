@@ -4,21 +4,30 @@ using Zenject;
 
 public class PlayerView : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+    private PlayerModel _playerModel;
     private PlayerController _playerController;
 
     [Inject]
-    public void Construct(PlayerController playerController)
+    public void Construct(PlayerController playerController, PlayerModel playerModel)
     {
         _playerController = playerController;
+        _playerModel = playerModel;
     }
 
-    public void OnMovement(InputValue value)
+    private void OnMovement(InputValue value)
     {
         _playerController.Move(value.Get<Vector2>());
     }
 
-    public void OnJump(InputValue value)
+    private void OnJump(InputValue value)
     {
         _playerController.Jump();
+    }
+
+    private void Update()
+    {
+        spriteRenderer.flipX = !_playerModel.IsFacingRight;
     }
 }

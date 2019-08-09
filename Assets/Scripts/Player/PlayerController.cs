@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 public class PlayerController
 {
     private readonly PlayerModel _playerModel;
 
-    [Inject]
     public PlayerController(PlayerModel playerModel)
     {
         _playerModel = playerModel;
@@ -20,7 +18,7 @@ public class PlayerController
         _playerModel.IsJumping = true;
         _playerModel.AfterJumpMovementDirection = _playerModel.MovementDirection;
         _playerModel.RigidBody.velocity = _playerModel.MovementDirection * PlayerModel.JumpSpeed;
-        
+
         AllowJumpDelayed(PlayerModel.JumpDurationSec);
     }
 
@@ -31,8 +29,14 @@ public class PlayerController
             _playerModel.AfterJumpMovementDirection = direction;
             return;
         }
-        
+
         _playerModel.MovementDirection = direction;
+
+        if (Math.Abs(direction.x - 0) > Mathf.Epsilon)
+        {
+            _playerModel.IsFacingRight = _playerModel.MovementDirection.x > 0;
+        }
+
         _playerModel.RigidBody.velocity = _playerModel.MovementDirection * PlayerModel.Speed;
     }
 
