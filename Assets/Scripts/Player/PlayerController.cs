@@ -38,6 +38,7 @@ public class PlayerController
         }
 
         _playerModel.RigidBody.velocity = _playerModel.MovementDirection * PlayerModel.Speed;
+        _playerModel.IsRunning = Math.Abs(_playerModel.RigidBody.velocity.magnitude - 0) > Mathf.Epsilon;
     }
 
     private async void AllowJumpDelayed(float delaySeconds)

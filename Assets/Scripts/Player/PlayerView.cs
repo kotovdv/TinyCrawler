@@ -2,8 +2,13 @@
 using UnityEngine.InputSystem.PlayerInput;
 using Zenject;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerView : MonoBehaviour
 {
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+    
+    [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private PlayerModel _playerModel;
@@ -18,13 +23,14 @@ public class PlayerView : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdateLookDirection(_playerModel.IsFacingRight);
-        _playerModel.OnIsFacingRightChanged += UpdateLookDirection;
+        HandleLookDirection(_playerModel.IsFacingRight);
+        _playerModel.OnIsRunningChanged += HandleRunAnimation;
+        _playerModel.OnIsFacingRightChanged += HandleLookDirection;
     }
 
     private void OnDisable()
     {
-        _playerModel.OnIsFacingRightChanged -= UpdateLookDirection;
+        _playerModel.OnIsFacingRightChanged -= HandleLookDirection;
     }
 
     private void OnMovement(InputValue value)
@@ -37,8 +43,13 @@ public class PlayerView : MonoBehaviour
         _playerController.Jump();
     }
 
-    private void UpdateLookDirection(bool isFacingRight)
+    private void HandleLookDirection(bool isFacingRight)
     {
         spriteRenderer.flipX = !isFacingRight;
+    }
+
+    private void HandleRunAnimation(bool isRunning)
+    {
+        animator.SetBool(IsRunning, isRunning);
     }
 }
