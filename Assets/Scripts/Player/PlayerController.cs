@@ -16,7 +16,6 @@ public class PlayerController
         if (_playerModel.IsJumping) return;
 
         _playerModel.IsJumping = true;
-        _playerModel.AfterJumpMovementDirection = _playerModel.MovementDirection;
         _playerModel.RigidBody.velocity = _playerModel.MovementDirection * PlayerModel.JumpSpeed;
 
         AllowJumpDelayed(PlayerModel.JumpDurationSec);
@@ -24,13 +23,9 @@ public class PlayerController
 
     public void Move(Vector2 direction)
     {
-        if (_playerModel.IsJumping)
-        {
-            _playerModel.AfterJumpMovementDirection = direction;
-            return;
-        }
-
         _playerModel.MovementDirection = direction;
+
+        if (_playerModel.IsJumping) return;
 
         if (Math.Abs(direction.x - 0) > Mathf.Epsilon)
         {
@@ -46,7 +41,6 @@ public class PlayerController
         await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
 
         _playerModel.IsJumping = false;
-        Move(_playerModel.AfterJumpMovementDirection);
-        _playerModel.AfterJumpMovementDirection = Vector2.zero;
+        Move(_playerModel.MovementDirection);
     }
 }
