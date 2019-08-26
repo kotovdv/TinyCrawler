@@ -7,7 +7,7 @@ using Zenject;
 public class PlayerView : MonoBehaviour
 {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
-    
+
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -17,20 +17,20 @@ public class PlayerView : MonoBehaviour
     [Inject]
     public void Construct(PlayerController playerController, PlayerModel playerModel)
     {
-        _playerController = playerController;
         _playerModel = playerModel;
+        _playerController = playerController;
     }
 
     private void OnEnable()
     {
-        HandleLookDirection(_playerModel.IsFacingRight);
         _playerModel.OnIsRunningChanged += HandleRunAnimation;
-        _playerModel.OnIsFacingRightChanged += HandleLookDirection;
+        _playerModel.OnIsFacingRightChanged += HandleFacingDirection;
     }
 
     private void OnDisable()
     {
-        _playerModel.OnIsFacingRightChanged -= HandleLookDirection;
+        _playerModel.OnIsRunningChanged -= HandleRunAnimation;
+        _playerModel.OnIsFacingRightChanged -= HandleFacingDirection;
     }
 
     private void OnMovement(InputValue value)
@@ -43,7 +43,7 @@ public class PlayerView : MonoBehaviour
         _playerController.Jump();
     }
 
-    private void HandleLookDirection(bool isFacingRight)
+    private void HandleFacingDirection(bool isFacingRight)
     {
         spriteRenderer.flipX = !isFacingRight;
     }
