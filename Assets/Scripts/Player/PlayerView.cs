@@ -16,6 +16,17 @@ public class PlayerView : MonoBehaviour
         _playerModel = playerModel;
     }
 
+    private void OnEnable()
+    {
+        UpdateLookDirection(_playerModel.IsFacingRight);
+        _playerModel.OnIsFacingRightChanged += UpdateLookDirection;
+    }
+
+    private void OnDisable()
+    {
+        _playerModel.OnIsFacingRightChanged -= UpdateLookDirection;
+    }
+
     private void OnMovement(InputValue value)
     {
         _playerController.Move(value.Get<Vector2>());
@@ -26,8 +37,8 @@ public class PlayerView : MonoBehaviour
         _playerController.Jump();
     }
 
-    private void Update()
+    private void UpdateLookDirection(bool isFacingRight)
     {
-        spriteRenderer.flipX = !_playerModel.IsFacingRight;
+        spriteRenderer.flipX = !isFacingRight;
     }
 }
