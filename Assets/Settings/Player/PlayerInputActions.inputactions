@@ -6,7 +6,7 @@
             "id": "4c9f3939-ebad-4916-ac9d-065b362b1aa2",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Run",
                     "type": "Value",
                     "id": "b0afb4c2-417f-4974-9920-041440e406e5",
                     "expectedControlType": "Axis",
@@ -14,12 +14,20 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "cfb41fe2-a7a1-4e3c-a43f-f4eca79c8a3f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "bc4072d5-bf11-48e0-97b6-7b0951cf1480",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -30,7 +38,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Run",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -41,7 +49,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
-                    "action": "Movement",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -52,7 +60,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
-                    "action": "Movement",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -63,7 +71,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -74,7 +82,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -85,7 +93,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3e7ff72-9646-4e9a-975a-ce3c73cccb6c",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

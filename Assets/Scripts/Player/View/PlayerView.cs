@@ -4,21 +4,28 @@ using Zenject;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class PlayerView : MonoBehaviour
+public partial class PlayerView : MonoBehaviour
 {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
+    [SerializeField] private Camera cam;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private PlayerModel _playerModel;
-    private PlayerController _playerController;
+    private PlayerCombatController _combatController;
+    private PlayerMovementController _movementController;
 
     [Inject]
-    public void Construct(PlayerController playerController, PlayerModel playerModel)
+    public void Construct(
+        PlayerModel playerModel,
+        PlayerCombatController combatController,
+        PlayerMovementController movementController
+    )
     {
         _playerModel = playerModel;
-        _playerController = playerController;
+        _combatController = combatController;
+        _movementController = movementController;
     }
 
     private void OnEnable()
@@ -31,16 +38,6 @@ public class PlayerView : MonoBehaviour
     {
         _playerModel.OnIsRunningChanged -= HandleRunAnimation;
         _playerModel.OnIsFacingRightChanged -= HandleFacingDirection;
-    }
-
-    private void OnMovement(InputValue value)
-    {
-        _playerController.Move(value.Get<Vector2>());
-    }
-
-    private void OnJump(InputValue value)
-    {
-        _playerController.Jump();
     }
 
     private void HandleFacingDirection(bool isFacingRight)

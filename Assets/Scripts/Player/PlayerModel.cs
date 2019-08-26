@@ -6,10 +6,9 @@ public class PlayerModel
     public const float Speed = 7.0F;
     public const float JumpSpeed = 21.0F;
     public const float JumpDurationSec = 0.125F;
+    private readonly Rigidbody2D _rigidBody;
 
-    public readonly Rigidbody2D RigidBody;
-    
-    public bool IsJumping = false;
+    public bool IsDashing = false;
     private bool _isRunning = false;
     private bool _isFacingRight = true;
     public Vector2 MovementDirection = Vector2.zero;
@@ -19,7 +18,7 @@ public class PlayerModel
 
     public PlayerModel(Rigidbody2D rigidbody)
     {
-        RigidBody = rigidbody;
+        _rigidBody = rigidbody;
     }
 
     public bool IsRunning
@@ -32,6 +31,12 @@ public class PlayerModel
     {
         get => _isFacingRight;
         set => HandleFieldChange(ref _isFacingRight, value, OnIsFacingRightChanged);
+    }
+
+    public Vector2 Velocity
+    {
+        get => _rigidBody.velocity;
+        set => _rigidBody.velocity = value;
     }
 
     private static void HandleFieldChange<T>(ref T field, T newValue, Action<T> fieldEvent) where T : IEquatable<T>
