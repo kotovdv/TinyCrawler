@@ -13,7 +13,7 @@ public class PlayerMovementController
 
     public void Run(Vector2 direction)
     {
-        _playerModel.MovementDirection = direction;
+        _playerModel.MovementDirection = direction.normalized;
 
         if (_playerModel.IsDashing) return;
 
