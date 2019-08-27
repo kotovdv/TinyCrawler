@@ -18,9 +18,11 @@ public class PlayerMovementController
         if (_playerModel.IsDashing) return;
 
         _playerModel.Velocity = _playerModel.MovementDirection * PlayerModel.Speed;
-        
-        _playerModel.IsFacingRight = _playerModel.Velocity.x >= 0;
         _playerModel.IsRunning = Math.Abs(_playerModel.Velocity.magnitude) > Mathf.Epsilon;
+        if (_playerModel.IsRunning)
+        {
+            _playerModel.IsFacingRight = _playerModel.Velocity.x > 0;
+        }
     }
 
     public void Dash()

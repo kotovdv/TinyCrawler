@@ -10,6 +10,8 @@ public class ArenaInstaller : MonoInstaller
         var playerModel = new PlayerModel(playerGameObject.GetComponent<Rigidbody2D>());
         
         Container.Bind<PlayerModel>().FromInstance(playerModel);
+        
+        Container.Bind<PlayerCombatController>().AsSingle();
         Container.Bind<PlayerMovementController>().AsSingle();
     }
 }
