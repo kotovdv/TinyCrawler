@@ -17,13 +17,10 @@ public class PlayerMovementController
 
         if (_playerModel.IsDashing) return;
 
-        if (Math.Abs(direction.x - 0) > Mathf.Epsilon)
-        {
-            _playerModel.IsFacingRight = _playerModel.MovementDirection.x > 0;
-        }
-
         _playerModel.Velocity = _playerModel.MovementDirection * PlayerModel.Speed;
-        _playerModel.IsRunning = Math.Abs(_playerModel.Velocity.magnitude - 0) > Mathf.Epsilon;
+        
+        _playerModel.IsFacingRight = _playerModel.Velocity.x >= 0;
+        _playerModel.IsRunning = Math.Abs(_playerModel.Velocity.magnitude) > Mathf.Epsilon;
     }
 
     public void Dash()
@@ -31,9 +28,9 @@ public class PlayerMovementController
         if (_playerModel.IsDashing) return;
 
         _playerModel.IsDashing = true;
-        _playerModel.Velocity = _playerModel.MovementDirection * PlayerModel.JumpSpeed;
+        _playerModel.Velocity = _playerModel.MovementDirection * PlayerModel.DashSpeed;
 
-        AllowDashDelayed(PlayerModel.JumpDurationSec);
+        AllowDashDelayed(PlayerModel.DashDurationSec);
     }
 
     private async void AllowDashDelayed(float delaySeconds)

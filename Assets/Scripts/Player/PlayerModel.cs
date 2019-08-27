@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerModel
 {
     public const float Speed = 7.0F;
-    public const float JumpSpeed = 21.0F;
-    public const float JumpDurationSec = 0.125F;
+    public const float DashSpeed = 21.0F;
+    public const float DashDurationSec = 0.125F;
     private readonly Rigidbody2D _rigidBody;
 
     public bool IsDashing = false;
