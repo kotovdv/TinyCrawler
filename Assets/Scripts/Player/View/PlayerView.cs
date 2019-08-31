@@ -12,32 +12,32 @@ public partial class PlayerView : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private PlayerModel _playerModel;
+    private IPlayerModelEvents _playerModelEvents;
     private PlayerCombatController _combatController;
     private PlayerMovementController _movementController;
 
     [Inject]
     public void Construct(
-        PlayerModel playerModel,
+        IPlayerModelEvents playerModelEvents,
         PlayerCombatController combatController,
         PlayerMovementController movementController
     )
     {
-        _playerModel = playerModel;
+        _playerModelEvents = playerModelEvents;
         _combatController = combatController;
         _movementController = movementController;
     }
 
     private void OnEnable()
     {
-        _playerModel.OnIsRunningChanged += HandleRunAnimation;
-        _playerModel.OnIsFacingRightChanged += HandleFacingDirection;
+        _playerModelEvents.OnIsRunningChanged += HandleRunAnimation;
+        _playerModelEvents.OnIsFacingRightChanged += HandleFacingDirection;
     }
 
     private void OnDisable()
     {
-        _playerModel.OnIsRunningChanged -= HandleRunAnimation;
-        _playerModel.OnIsFacingRightChanged -= HandleFacingDirection;
+        _playerModelEvents.OnIsRunningChanged -= HandleRunAnimation;
+        _playerModelEvents.OnIsFacingRightChanged -= HandleFacingDirection;
     }
 
     private void HandleFacingDirection(bool isFacingRight)

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerCombatController
 {
-    private readonly PlayerModel _playerModel;
+    private readonly IPlayerModel _playerModel;
 
-    public PlayerCombatController(PlayerModel playerModel)
+    public PlayerCombatController(IPlayerModel playerModel)
     {
         _playerModel = playerModel;
     }

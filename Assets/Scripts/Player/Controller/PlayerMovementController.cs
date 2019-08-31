@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerMovementController
 {
-    private readonly PlayerModel _playerModel;
+    private readonly IPlayerModel _playerModel;
 
-    public PlayerMovementController(PlayerModel playerModel)
+    public PlayerMovementController(IPlayerModel playerModel)
     {
         _playerModel = playerModel;
     }
@@ -17,7 +17,7 @@ public class PlayerMovementController
 
         if (_playerModel.IsDashing) return;
 
-        _playerModel.Velocity = _playerModel.MovementDirection * PlayerModel.Speed;
+        _playerModel.Velocity = _playerModel.MovementDirection * _playerModel.Speed;
         _playerModel.IsRunning = Math.Abs(_playerModel.Velocity.magnitude) > Mathf.Epsilon;
         if (_playerModel.IsRunning)
         {
@@ -30,9 +30,18 @@ public class PlayerMovementController
         if (_playerModel.IsDashing) return;
 
         _playerModel.IsDashing = true;
-        _playerModel.Velocity = _playerModel.MovementDirection * PlayerModel.DashSpeed;
+        
+        var dashDirection = _playerModel.MovementDirection;
+        if (dashDirection == Vector2.zero)
+        {
+            dashDirection = _playerModel.IsFacingRight
+                ? Vector2.right
+                : Vector2.left;
+        }
 
-        AllowDashDelayed(PlayerModel.DashDurationSec);
+        _playerModel.Velocity = dashDirection * _playerModel.DashSpeed;
+
+        AllowDashDelayed(_playerModel.DashDurationSec);
     }
 
     private async void AllowDashDelayed(float delaySeconds)

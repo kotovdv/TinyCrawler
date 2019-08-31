@@ -1,25 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerModel
+public class PlayerModel : IPlayerModel, IPlayerModelEvents
 {
-    public const float Speed = 7.0F;
-    public const float DashSpeed = 21.0F;
-    public const float DashDurationSec = 0.125F;
     private readonly Rigidbody2D _rigidBody;
 
-    public bool IsDashing = false;
-    private bool _isRunning = false;
+    private bool _isRunning;
     private bool _isFacingRight = true;
-    public Vector2 MovementDirection = Vector2.zero;
 
     public event Action<bool> OnIsRunningChanged;
     public event Action<bool> OnIsFacingRightChanged;
 
-    public PlayerModel(Rigidbody2D rigidbody)
+    public  PlayerModel(Rigidbody2D rigidbody)
     {
         _rigidBody = rigidbody;
     }
+
+    public float Speed { get; } = 7.0F;
+
+    public float DashSpeed { get; } = 21.0F;
+
+    public float DashDurationSec { get; } = 0.125F;
+
+    public bool IsDashing { get; set; } = false;
 
     public bool IsRunning
     {
@@ -32,6 +35,8 @@ public class PlayerModel
         get => _isFacingRight;
         set => HandleFieldChange(ref _isFacingRight, value, OnIsFacingRightChanged);
     }
+
+    public Vector2 MovementDirection { get; set; } = Vector3.zero;
 
     public Vector2 Velocity
     {
