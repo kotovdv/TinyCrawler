@@ -273,6 +273,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &1161578744 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2140023221264617097, guid: c125071fcce5e2f429a72bdac75d9856,
+    type: 3}
+  m_PrefabInstance: {fileID: 6393761266520906599}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1509362549
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +490,47 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6393761266299523307, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2066879029
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393761266299523307, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393761266299523307, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969083919996667233, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2066879029
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969083919996667233, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969083919996667233, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019815955693978129, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: weaponScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c78b6c460be3dd44a02f9bf30ba965a,
+        type: 2}
+    - target: {fileID: 5019815955693978129, guid: c125071fcce5e2f429a72bdac75d9856,
+        type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 1161578744}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c125071fcce5e2f429a72bdac75d9856, type: 3}
 --- !u!1 &6393761266520906600 stripped
