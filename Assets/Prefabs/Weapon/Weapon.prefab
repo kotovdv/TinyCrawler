@@ -95,9 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 3029799481337530658}
+  handPosition: {fileID: 0}
   spriteRenderer: {fileID: 7307252472286544586}
-  weaponScriptableObject: {fileID: 11400000, guid: 8c78b6c460be3dd44a02f9bf30ba965a,
-    type: 2}
+  weaponScriptableObject: {fileID: 0}
 --- !u!61 &3029799481337530658
 BoxCollider2D:
   m_ObjectHideFlags: 0

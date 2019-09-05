@@ -4,11 +4,10 @@ using Zenject;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public partial class PlayerView : MonoBehaviour
+public class PlayerView : MonoBehaviour
 {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
-    [SerializeField] private Camera cam;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -39,10 +38,20 @@ public partial class PlayerView : MonoBehaviour
         _playerModelEvents.OnIsRunningChanged -= HandleRunAnimation;
         _playerModelEvents.OnIsFacingRightChanged -= HandleFacingDirection;
     }
+    
+    private void OnRun(InputValue value)
+    {
+        _movementController.Run(value.Get<Vector2>());
+    }
+
+    private void OnDash(InputValue value)
+    {
+        _movementController.Dash();
+    }
 
     private void HandleFacingDirection(bool isFacingRight)
     {
-        spriteRenderer.flipX = !isFacingRight;
+        transform.rotation = Quaternion.Euler(0, isFacingRight ? 0 : 180, 0);
     }
 
     private void HandleRunAnimation(bool isRunning)

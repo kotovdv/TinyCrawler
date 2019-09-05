@@ -27,7 +27,7 @@
                     "id": "bc4072d5-bf11-48e0-97b6-7b0951cf1480",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -100,7 +100,7 @@
                 {
                     "name": "",
                     "id": "c3e7ff72-9646-4e9a-975a-ce3c73cccb6c",
-                    "path": "<Mouse>/position",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
