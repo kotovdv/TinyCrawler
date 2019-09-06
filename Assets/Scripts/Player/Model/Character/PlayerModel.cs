@@ -32,6 +32,8 @@ public class PlayerModel : IPlayerModel, IPlayerModelEvents
         set => HandleFieldChange(ref _isRunning, value, OnIsRunningChanged);
     }
 
+    public bool CanChangeFacing { get; set; } = true;
+
     public bool IsFacingRight
     {
         get => _isFacingRight;

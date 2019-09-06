@@ -8,11 +8,12 @@ public interface IPlayerModel
 
     bool IsDashing { get; set; }
     bool IsRunning { get; set; }
+    bool CanChangeFacing { get; set; }
     bool IsFacingRight { get; set; }
 
     Vector2 Velocity { get; set; }
     Vector2 MovementDirection { get; set; }
-    
+
     IWeapon Weapon { get; set; }
     Transform HandPosition { get; }
 

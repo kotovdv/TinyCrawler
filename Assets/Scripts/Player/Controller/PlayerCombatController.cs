@@ -15,6 +15,7 @@ public class PlayerCombatController
             return;
 
         _character.CanAttack = false;
+        _character.CanChangeFacing = false;
         _character.Weapon.Colllider.enabled = true;
 
         var weaponStats = _character.Weapon.Stats;
@@ -44,7 +45,7 @@ public class PlayerCombatController
     private async void Swing(Vector2 worldPosition, float angle, float expectedSwingDurationSec)
     {
         var handPosition = _character.HandPosition;
-        
+
         var fromUpToCenterRotation = Quaternion.FromToRotation(
             handPosition.InverseTransformDirection(handPosition.up),
             handPosition.InverseTransformPoint(worldPosition).normalized
@@ -63,13 +64,14 @@ public class PlayerCombatController
                 afterSwingRotation,
                 _character.AttackTimerSec / expectedSwingDurationSec
             );
-            
+
             await new WaitForFixedUpdate();
 
             _character.AttackTimerSec += Time.fixedDeltaTime;
         }
 
         _character.CanAttack = true;
+        _character.CanChangeFacing = true;
         _character.Weapon.Colllider.enabled = false;
         ResetWeaponPosition();
     }
