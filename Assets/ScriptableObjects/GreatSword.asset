@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643b19d81df944f3a362f5ad71ba821d, type: 3}
   m_Name: GreatSword
   m_EditorClassIdentifier: 
-  speed: 1
-  length: 4.5
+  prefab: {fileID: 3525661645162709285, guid: 5222f225bc879c143b4b6ab8d9a63ad6, type: 3}
   sprite: {fileID: 21300000, guid: e5a2b1de37645d2409ec1f6a17af5c1f, type: 3}
   gripPosition: {x: 0, y: -0.8}
+  gripRotation: {x: -0, y: -0, z: 60.000004}
   boxColliderSize: {x: 0.75, y: 1.875}
-  prefab: {fileID: 3525661645162709285, guid: 5222f225bc879c143b4b6ab8d9a63ad6, type: 3}
+  swingDegrees: 60
+  swingDurationSec: 0.25

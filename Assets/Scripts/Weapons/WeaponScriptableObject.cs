@@ -2,7 +2,7 @@ using ModestTree;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "TinyCrawler/Weapon")]
-public class WeaponScriptableObject : ScriptableObject
+public class WeaponScriptableObject : ScriptableObject, IWeaponStats
 {
     [Tooltip("Use as an alternative for manual component related settings population")]
     [SerializeField] private GameObject prefab;
@@ -12,10 +12,15 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField] private Vector3 gripRotation;
     [SerializeField] private Vector2 boxColliderSize;
 
+    [SerializeField] private float swingDegrees;
+    [SerializeField] private float swingDurationSec;
+
     public Sprite Sprite => sprite;
-    public Vector2 GripPosition => gripPosition;
-    public Vector3 GripRotation => gripRotation;
+    public Vector2 GripPosition => -gripPosition;
+    public Quaternion GripRotation => Quaternion.Euler(gripRotation);
     public Vector2 BoxColliderSize => boxColliderSize;
+    public float SwingDegrees => swingDegrees;
+    public float SwingDurationSec => swingDurationSec;
 
     private void OnValidate()
     {

@@ -1,67 +1,74 @@
-using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerCombatController
 {
-    private readonly IPlayerModel _playerModel;
+    private readonly IPlayerModel _character;
 
-    public PlayerCombatController(IPlayerModel playerModel)
+    public PlayerCombatController(IPlayerModel character)
     {
-        _playerModel = playerModel;
+        _character = character;
     }
 
-    public void Attack(Vector2 position)
+    public void Attack(Vector2 worldPoint)
     {
-        if (_playerModel.IsAttacking)
+        if (!_character.CanAttack)
             return;
 
-        _playerModel.IsAttacking = true;
+        _character.CanAttack = false;
+
+        var weaponStats = _character.Weapon.Stats;
+        //TODO do not allow flipping
+        _character.IsFacingRight = worldPoint.x >= _character.HandPosition.position.x;
+        Swing(worldPoint.normalized, weaponStats.SwingDegrees, weaponStats.SwingDurationSec);
     }
 
-    private async void AllowAttackDelayed(float delaySeconds)
+    public void EquipWeapon(IWeapon weapon)
     {
-        await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
+        //TODO prb replace whole prefab
+        _character.Weapon = weapon;
+        _character.Weapon.Colllider.enabled = true;
+        _character.Weapon.Colllider.size = weapon.Stats.BoxColliderSize;
 
-        _playerModel.IsAttacking = false;
-    }
-    
-    
-    private void ResetWeaponPosition(WeaponScriptableObject weapon)
-    {
-        /*handPosition.rotation = Quaternion.identity;
-        var handPos = handPosition.position;
-
-        weaponPosition.position = new Vector3(
-            handPos.x - weapon.GripPosition.x,
-            handPos.y - weapon.GripPosition.y
-        );*/
-
-//        handPosition.rotation = Quaternion.Euler(weapon.GripRotation);
+        ResetWeaponPosition();
     }
 
-    private async void Swing(Vector3 swingDirection, int angle, float durationSec)
+    private void ResetWeaponPosition()
     {
-        /*var halfAngle = Math.Abs(angle) / 2f;
+        var stats = _character.Weapon.Stats;
 
-        var faceModifier = _playerModel.IsFacingRight ? 1 : -1;
-        var from = Quaternion.Euler(0, 0, (faceModifier * halfAngle)) * swingDirection;
-        var to = Quaternion.Euler(0, 0, -(faceModifier * halfAngle)) * swingDirection;
+        _character.HandPosition.localRotation = stats.GripRotation;
+        _character.Weapon.Position.localPosition = stats.GripPosition;
+    }
 
-        var stopwatch = Stopwatch.StartNew();
+    private async void Swing(Vector2 swingDirection, float angle, float expectedSwingDurationSec)
+    {
+        var handPosition = _character.HandPosition;
 
-        while (stopwatch.Elapsed.TotalSeconds < durationSec)
+        var fromUpToCenterRotation = Quaternion.FromToRotation(
+            handPosition.InverseTransformDirection(handPosition.up),
+            handPosition.InverseTransformDirection(swingDirection)
+        );
+
+        var swingCenterRotation = handPosition.localRotation * fromUpToCenterRotation;
+
+        var beforeSwingRotation = swingCenterRotation * Quaternion.Euler(0, 0, angle / 2F);
+        var afterSwingRotation = swingCenterRotation * Quaternion.Euler(0, 0, -angle / 2F);
+
+        _character.AttackTimerSec = 0;
+        while (_character.AttackTimerSec < expectedSwingDurationSec)
         {
-            var elapsedTotalSeconds = stopwatch.Elapsed.TotalSeconds;
-            var durationFraction = (float) elapsedTotalSeconds / durationSec;
+            await new WaitForFixedUpdate();
 
-            Quaternion.FromToRotation()
-                Quaternion.RotateTowards()
-            handPosition.rotation = Quaternion.FromToRotation(Vector3.up, Vector3.Slerp(from, to, durationFraction));
+            handPosition.localRotation = Quaternion.Lerp(
+                beforeSwingRotation,
+                afterSwingRotation,
+                _character.AttackTimerSec / expectedSwingDurationSec
+            );
 
-            await new WaitForUpdate();
+            _character.AttackTimerSec += Time.fixedDeltaTime;
         }
 
-        ResetWeaponPosition(_currentWeapon);*/
+        _character.CanAttack = true;
+        ResetWeaponPosition();
     }
 }

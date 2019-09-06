@@ -1,4 +1,9 @@
+using UnityEngine;
+
 public interface IWeapon
 {
-    void Attack();
+    Transform Position { get; }
+    BoxCollider2D Colllider { get; }
+    
+    IWeaponStats Stats { get; }
 }

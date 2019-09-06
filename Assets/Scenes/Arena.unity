@@ -138,17 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6fbd81516645ebb4cbe5e285403020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 776346299}
-  joint: {fileID: 0}
-  handPosition: {fileID: 433016418}
-  weaponPosition: {fileID: 776346298}
+  weaponTransform: {fileID: 776346298}
+  weaponCollider: {fileID: 776346299}
   spriteRenderer: {fileID: 776346297}
---- !u!4 &433016418 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5760918361278293730, guid: c125071fcce5e2f429a72bdac75d9856,
-    type: 3}
-  m_PrefabInstance: {fileID: 6393761266520906599}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

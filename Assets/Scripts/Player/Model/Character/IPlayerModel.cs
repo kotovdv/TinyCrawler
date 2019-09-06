@@ -16,6 +16,11 @@ public interface IPlayerModel
     Vector2 AttackDirection { get; set; }
     Vector2 MovementDirection { get; set; }
 
+
     Transform HandPosition { get; }
-    WeaponModel Weapon { get; set; }
+    Transform WeaponPosition { get; }
+    IWeapon Weapon { get; set; }
+
+    bool CanAttack { get; set; }
+    float AttackTimerSec { get; set; }
 }

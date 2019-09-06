@@ -20,6 +20,6 @@ public class ArenaInstaller : MonoInstaller
 
         Container.Bind<PlayerCombatController>().AsSingle();
         Container.Bind<PlayerMovementController>().AsSingle();
-        Container.BindInstance(defaultWeapon).WhenInjectedInto<PlayerWeaponView>();
+        Container.BindInstance(defaultWeapon).WhenInjectedInto<CharacterWeaponView>();
     }
 }

@@ -41,8 +41,14 @@ public class PlayerModel : IPlayerModel, IPlayerModelEvents
     }
 
     public Vector2 AttackDirection { get; set; }
+
     public Vector2 MovementDirection { get; set; } = Vector3.zero;
-    public WeaponModel Weapon { get; set; }
+
+    public IWeapon Weapon { get; set; }
+
+    public bool CanAttack { get; set; } = true;
+
+    public float AttackTimerSec { get; set; } = 0F;
 
     public Vector2 Velocity
     {
@@ -57,6 +63,7 @@ public class PlayerModel : IPlayerModel, IPlayerModelEvents
     }
 
     public Transform HandPosition { get; private set; }
+    public Transform WeaponPosition { get; private set; }
 
     private static void HandleFieldChange<T>(ref T field, T newValue, Action<T> fieldEvent) where T : IEquatable<T>
     {
