@@ -15,11 +15,12 @@ public class PlayerCombatController
             return;
 
         _character.CanAttack = false;
+        _character.Weapon.Colllider.enabled = true;
 
         var weaponStats = _character.Weapon.Stats;
         //TODO do not allow flipping
         _character.IsFacingRight = worldPoint.x >= _character.HandPosition.position.x;
-        Swing(worldPoint.normalized, weaponStats.SwingDegrees, weaponStats.SwingDurationSec);
+        Swing(worldPoint, weaponStats.SwingDegrees, weaponStats.SwingDurationSec);
     }
 
     public void EquipWeapon(IWeapon weapon)
@@ -40,13 +41,13 @@ public class PlayerCombatController
         _character.Weapon.Position.localPosition = stats.GripPosition;
     }
 
-    private async void Swing(Vector2 swingDirection, float angle, float expectedSwingDurationSec)
+    private async void Swing(Vector2 worldPosition, float angle, float expectedSwingDurationSec)
     {
         var handPosition = _character.HandPosition;
-
+        
         var fromUpToCenterRotation = Quaternion.FromToRotation(
             handPosition.InverseTransformDirection(handPosition.up),
-            handPosition.InverseTransformDirection(swingDirection)
+            handPosition.InverseTransformPoint(worldPosition).normalized
         );
 
         var swingCenterRotation = handPosition.localRotation * fromUpToCenterRotation;
@@ -57,18 +58,19 @@ public class PlayerCombatController
         _character.AttackTimerSec = 0;
         while (_character.AttackTimerSec < expectedSwingDurationSec)
         {
-            await new WaitForFixedUpdate();
-
             handPosition.localRotation = Quaternion.Lerp(
                 beforeSwingRotation,
                 afterSwingRotation,
                 _character.AttackTimerSec / expectedSwingDurationSec
             );
+            
+            await new WaitForFixedUpdate();
 
             _character.AttackTimerSec += Time.fixedDeltaTime;
         }
 
         _character.CanAttack = true;
+        _character.Weapon.Colllider.enabled = false;
         ResetWeaponPosition();
     }
 }

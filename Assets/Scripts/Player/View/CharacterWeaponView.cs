@@ -35,16 +35,11 @@ public class CharacterWeaponView : MonoBehaviour
         var worldPosition = _camera.ScreenToWorldPoint(screenPosition);
 
         _combatController.Attack(worldPosition);
-        worldPosition.z = 0;
-        worldPosition.Normalize();
-
-        _combatController.Attack(worldPosition);
     }
 
     private void SetWeapon(WeaponScriptableObject weapon)
     {
         spriteRenderer.sprite = weapon.Sprite;
-
         _combatController.EquipWeapon(new Weapon(weaponTransform, weaponCollider, weapon));
     }
 }

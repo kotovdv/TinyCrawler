@@ -11,8 +11,10 @@ public class ArenaInstaller : MonoInstaller
     {
         var characterComponents = playerGameObject.GetComponent<CharacterComponents>();
 
-        var hand = playerGameObject.transform.Find("Hand");
-        var playerModel = new PlayerModel(hand, characterComponents.BodyRigidbody2D);
+        var playerModel = new PlayerModel(
+            characterComponents.HandTransform,
+            characterComponents.BodyRigidbody2D
+        );
 
         Container.Bind<Camera>().FromInstance(cam);
         Container.Bind<IPlayerModel>().FromInstance(playerModel);

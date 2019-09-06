@@ -32,15 +32,11 @@ public class PlayerModel : IPlayerModel, IPlayerModelEvents
         set => HandleFieldChange(ref _isRunning, value, OnIsRunningChanged);
     }
 
-    public bool IsAttacking { get; set; }
-
     public bool IsFacingRight
     {
         get => _isFacingRight;
         set => HandleFieldChange(ref _isFacingRight, value, OnIsFacingRightChanged);
     }
-
-    public Vector2 AttackDirection { get; set; }
 
     public Vector2 MovementDirection { get; set; } = Vector3.zero;
 
@@ -56,14 +52,7 @@ public class PlayerModel : IPlayerModel, IPlayerModelEvents
         set => _rigidBody.velocity = value;
     }
 
-    public Vector2 WorldPosition
-    {
-        get => _rigidBody.position;
-        set => _rigidBody.position = value;
-    }
-
     public Transform HandPosition { get; private set; }
-    public Transform WeaponPosition { get; private set; }
 
     private static void HandleFieldChange<T>(ref T field, T newValue, Action<T> fieldEvent) where T : IEquatable<T>
     {
