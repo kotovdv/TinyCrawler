@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class PlayerCombatController
+public class CombatMechanics
 {
-    private readonly IPlayerModel _character;
+    private readonly ICharacterModel _character;
 
-    public PlayerCombatController(IPlayerModel character)
+    public CombatMechanics(ICharacterModel character)
     {
         _character = character;
     }

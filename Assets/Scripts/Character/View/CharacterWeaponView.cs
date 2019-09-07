@@ -11,17 +11,17 @@ public class CharacterWeaponView : MonoBehaviour
 
     private Camera _camera;
     private WeaponScriptableObject _weapon;
-    private PlayerCombatController _combatController;
+    private CombatMechanics _combatMechanics;
 
     [Inject]
     public void Construct(
         Camera cam,
         WeaponScriptableObject initialWeapon,
-        PlayerCombatController playerCombatController)
+        CombatMechanics combatMechanics)
     {
         _camera = cam;
         _weapon = initialWeapon;
-        _combatController = playerCombatController;
+        _combatMechanics = combatMechanics;
     }
 
     private void Awake()
@@ -34,12 +34,12 @@ public class CharacterWeaponView : MonoBehaviour
         var screenPosition = Mouse.current.position.ReadValue();
         var worldPosition = _camera.ScreenToWorldPoint(screenPosition);
 
-        _combatController.Attack(worldPosition);
+        _combatMechanics.Attack(worldPosition);
     }
 
     private void SetWeapon(WeaponScriptableObject weapon)
     {
         spriteRenderer.sprite = weapon.Sprite;
-        _combatController.EquipWeapon(new Weapon(weaponTransform, weaponCollider, weapon));
+        _combatMechanics.EquipWeapon(new Weapon(weaponTransform, weaponCollider, weapon));
     }
 }

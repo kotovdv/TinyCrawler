@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerModel : IPlayerModel, IPlayerModelEvents
+public class CharacterModel : ICharacterModel, ICharacterModelEvents
 {
     private readonly Rigidbody2D _rigidBody;
 
@@ -10,9 +10,8 @@ public class PlayerModel : IPlayerModel, IPlayerModelEvents
 
     public event Action<bool> OnIsRunningChanged;
     public event Action<bool> OnIsFacingRightChanged;
-    public event Action<Vector2> OnPlayerAttackedInDirection;
 
-    public PlayerModel(Transform handPosition, Rigidbody2D rigidbody)
+    public CharacterModel(Transform handPosition, Rigidbody2D rigidbody)
     {
         _rigidBody = rigidbody;
         HandPosition = handPosition;

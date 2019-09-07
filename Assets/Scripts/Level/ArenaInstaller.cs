@@ -11,17 +11,17 @@ public class ArenaInstaller : MonoInstaller
     {
         var characterComponents = playerGameObject.GetComponent<CharacterComponents>();
 
-        var playerModel = new PlayerModel(
+        var playerModel = new CharacterModel(
             characterComponents.HandTransform,
             characterComponents.BodyRigidbody2D
         );
 
         Container.Bind<Camera>().FromInstance(cam);
-        Container.Bind<IPlayerModel>().FromInstance(playerModel);
-        Container.Bind<IPlayerModelEvents>().FromInstance(playerModel);
+        Container.Bind<ICharacterModel>().FromInstance(playerModel);
+        Container.Bind<ICharacterModelEvents>().FromInstance(playerModel);
 
-        Container.Bind<PlayerCombatController>().AsSingle();
-        Container.Bind<PlayerMovementController>().AsSingle();
+        Container.Bind<CombatMechanics>().AsSingle();
+        Container.Bind<MovementMechanics>().AsSingle();
         Container.BindInstance(defaultWeapon).WhenInjectedInto<CharacterWeaponView>();
     }
 }

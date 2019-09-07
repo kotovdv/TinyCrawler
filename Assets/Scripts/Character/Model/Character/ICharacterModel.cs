@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IPlayerModel
+public interface ICharacterModel
 {
     float Speed { get; }
     float DashSpeed { get; }
