@@ -6,4 +6,7 @@ public class CharacterScriptableObject : ScriptableObject
 {
     [SerializeField] private Sprite sprite;
     [SerializeField] private AnimatorController animatorController;
+
+    public Sprite Sprite => sprite;
+    public AnimatorController AnimatorController => animatorController;
 }

@@ -10,6 +10,7 @@ public class CharacterView : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private CharacterScriptableObject characterScriptableObject;
 
     private ICharacterModelEvents _characterModelEvents;
 
@@ -23,6 +24,12 @@ public class CharacterView : MonoBehaviour
     {
         _movementMechanics = movementMechanics;
         _characterModelEvents = characterModelEvents;
+    }
+
+    private void Awake()
+    {
+        spriteRenderer.sprite = characterScriptableObject.Sprite;
+        animator.runtimeAnimatorController = characterScriptableObject.AnimatorController;
     }
 
     private void OnEnable()

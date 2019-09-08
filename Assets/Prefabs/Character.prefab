@@ -137,8 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd162a4696c9d240b621fe5a6184e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  animator: {fileID: 7131905863047623445}
+  spriteRenderer: {fileID: 7131905863047623446}
+  characterScriptableObject: {fileID: 0}
 --- !u!114 &7131905863047623450
 MonoBehaviour:
   m_ObjectHideFlags: 0

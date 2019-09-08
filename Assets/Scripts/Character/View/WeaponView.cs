@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.PlayerInput;
 using Zenject;
 
-public class CharacterWeaponView : MonoBehaviour
+public class WeaponView : MonoBehaviour
 {
     [SerializeField] private Transform weaponTransform;
     [SerializeField] private BoxCollider2D weaponCollider;

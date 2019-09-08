@@ -22,6 +22,6 @@ public class ArenaInstaller : MonoInstaller
 
         Container.Bind<CombatMechanics>().AsSingle();
         Container.Bind<MovementMechanics>().AsSingle();
-        Container.BindInstance(defaultWeapon).WhenInjectedInto<CharacterWeaponView>();
+        Container.BindInstance(defaultWeapon).WhenInjectedInto<WeaponView>();
     }
 }
