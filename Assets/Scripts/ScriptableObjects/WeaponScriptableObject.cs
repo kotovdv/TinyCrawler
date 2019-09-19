@@ -1,19 +1,19 @@
-using ModestTree;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [CreateAssetMenu(menuName = "TinyCrawler/Weapon")]
 public class WeaponScriptableObject : ScriptableObject, IWeaponStats
 {
     [Tooltip("Use as an alternative for manual component related settings population")]
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject prefab = default;
 
-    [SerializeField] private Sprite sprite;
-    [SerializeField] private Vector2 gripPosition;
-    [SerializeField] private Vector3 gripRotation;
-    [SerializeField] private Vector2 boxColliderSize;
+    [SerializeField] private Sprite sprite = default;
+    [SerializeField] private Vector2 gripPosition = default;
+    [SerializeField] private Vector3 gripRotation = default;
+    [SerializeField] private Vector2 boxColliderSize = default;
 
-    [SerializeField] private float swingDegrees;
-    [SerializeField] private float swingDurationSec;
+    [SerializeField] private float swingDegrees = default;
+    [SerializeField] private float swingDurationSec = default;
 
     public Sprite Sprite => sprite;
     public Vector2 GripPosition => -gripPosition;
