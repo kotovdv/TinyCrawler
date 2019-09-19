@@ -4,8 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class WeaponView : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer spriteRenderer = default;
+    [Header("Weapon settings")]
     [SerializeField] private WeaponScriptableObject weaponScriptableObject = default;
+
+    [Header("Components settings")]
+    [SerializeField] private SpriteRenderer spriteRenderer = default;
 
     [SerializeField] private Transform weaponTransform = default;
     [SerializeField] private Transform weaponGripTransform = default;

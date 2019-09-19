@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharacterScriptableObject : ScriptableObject
 {
     [SerializeField] private Sprite sprite = default;
-    [SerializeField] private AnimatorController animatorController = default;
+    [SerializeField] private RuntimeAnimatorController animatorController = default;
 
     public Sprite Sprite => sprite;
-    public AnimatorController AnimatorController => animatorController;
+    public RuntimeAnimatorController AnimatorController => animatorController;
 }

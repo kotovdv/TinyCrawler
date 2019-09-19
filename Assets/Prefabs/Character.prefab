@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7131905863047623441}
+  - component: {fileID: 7131905863047623444}
+  - component: {fileID: 7131905863810677412}
   - component: {fileID: 7131905863047623446}
   - component: {fileID: 7131905863047623447}
   - component: {fileID: 7131905863047623445}
-  - component: {fileID: 7131905863047623444}
-  - component: {fileID: 7131905863810677412}
+  - component: {fileID: 1437890989643568986}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -36,6 +37,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7131905863047623444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131905863047623440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd162a4696c9d240b621fe5a6184e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterScriptableObject: {fileID: 0}
+  animator: {fileID: 7131905863047623445}
+  spriteRenderer: {fileID: 7131905863047623446}
+--- !u!114 &7131905863810677412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131905863047623440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa834bf044344619652d3894cba251a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponView: {fileID: 7131905863810677413}
+  weaponTrasnform: {fileID: 7131905863173438698}
+  weaponGripTransform: {fileID: 7131905864655142842}
+  weaponBoxCollider: {fileID: 7131905863173438696}
+  characterView: {fileID: 7131905863047623444}
+  characterRigidBody: {fileID: 7131905863047623447}
 --- !u!212 &7131905863047623446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -125,39 +159,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7131905863047623444
-MonoBehaviour:
+--- !u!61 &1437890989643568986
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7131905863047623440}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd162a4696c9d240b621fe5a6184e43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 7131905863047623445}
-  spriteRenderer: {fileID: 7131905863047623446}
-  characterScriptableObject: {fileID: 0}
---- !u!114 &7131905863810677412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7131905863047623440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa834bf044344619652d3894cba251a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponView: {fileID: 7131905863810677413}
-  weaponTrasnform: {fileID: 7131905863173438698}
-  weaponGripTransform: {fileID: 7131905864655142842}
-  weaponBoxCollider: {fileID: 7131905863173438696}
-  characterView: {fileID: 7131905863047623444}
-  characterRigidBody: {fileID: 7131905863047623447}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0001, y: 0.0001}
+  m_EdgeRadius: 0
 --- !u!1 &7131905863173438693
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,9 +194,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7131905863173438698}
+  - component: {fileID: 7131905863810677413}
   - component: {fileID: 7131905863173438699}
   - component: {fileID: 7131905863173438696}
-  - component: {fileID: 7131905863810677413}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -191,6 +218,22 @@ Transform:
   m_Father: {fileID: 7131905864655142842}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7131905863810677413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131905863173438693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6fbd81516645ebb4cbe5e285403020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponScriptableObject: {fileID: 0}
+  spriteRenderer: {fileID: 7131905863173438699}
+  weaponTransform: {fileID: 7131905863173438698}
+  weaponGripTransform: {fileID: 7131905864655142842}
 --- !u!212 &7131905863173438699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -266,22 +309,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &7131905863810677413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7131905863173438693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e6fbd81516645ebb4cbe5e285403020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 7131905863173438699}
-  weaponScriptableObject: {fileID: 0}
-  weaponTransform: {fileID: 7131905863173438698}
-  weaponGripTransform: {fileID: 7131905864655142842}
 --- !u!1 &7131905864655142837
 GameObject:
   m_ObjectHideFlags: 0

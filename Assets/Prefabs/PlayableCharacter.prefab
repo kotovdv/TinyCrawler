@@ -53,15 +53,14 @@ MonoBehaviour:
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput.PlayerInput+DeviceLostEvent, Unity.InputSystem,
-      Version=0.9.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceLostEvent, Unity.InputSystem,
+      Version=0.9.6.0, Culture=neutral, PublicKeyToken=null
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput.PlayerInput+DeviceRegainedEvent,
-      Unity.InputSystem, Version=0.9.0.0, Culture=neutral, PublicKeyToken=null
-  m_ActionEvents: []
-  m_AutoSwitchControlScheme: 0
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceRegainedEvent, Unity.InputSystem,
+      Version=0.9.6.0, Culture=neutral, PublicKeyToken=null
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 4c9f3939-ebad-4916-ac9d-065b362b1aa2
   m_SplitScreenIndex: -1
@@ -109,6 +108,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7131905863810677412, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: weaponGrip
+      value: 
+      objectReference: {fileID: 5271493377358072779}
+    - target: {fileID: 7131905863810677412, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: bodyRigidbody2D
+      value: 
+      objectReference: {fileID: 5271493378971879270}
+    - target: {fileID: 7131905863810677412, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: characterView
+      value: 
+      objectReference: {fileID: 5271493378971879269}
     - target: {fileID: 7131905863047623441, guid: f6c75a97fbb1b2345af4d40b8b59143f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -164,38 +178,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7131905863810677412, guid: f6c75a97fbb1b2345af4d40b8b59143f,
-        type: 3}
-      propertyPath: weaponGrip
-      value: 
-      objectReference: {fileID: 5271493377358072779}
-    - target: {fileID: 7131905863810677412, guid: f6c75a97fbb1b2345af4d40b8b59143f,
-        type: 3}
-      propertyPath: bodyRigidbody2D
-      value: 
-      objectReference: {fileID: 5271493378971879270}
-    - target: {fileID: 7131905863810677412, guid: f6c75a97fbb1b2345af4d40b8b59143f,
-        type: 3}
-      propertyPath: characterView
-      value: 
-      objectReference: {fileID: 5271493378971879269}
-    - target: {fileID: 7131905863047623444, guid: f6c75a97fbb1b2345af4d40b8b59143f,
-        type: 3}
-      propertyPath: characterScriptableObject
-      value: 
-      objectReference: {fileID: 11400000, guid: ab0e64121f2834317ac51c00c5cf140c,
-        type: 2}
-    - target: {fileID: 7131905863047623446, guid: f6c75a97fbb1b2345af4d40b8b59143f,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b6d83631800bd56459bdbad8743e8a8b,
-        type: 3}
     - target: {fileID: 7131905863810677413, guid: f6c75a97fbb1b2345af4d40b8b59143f,
         type: 3}
       propertyPath: weapon
       value: 
       objectReference: {fileID: 11400000, guid: 8c78b6c460be3dd44a02f9bf30ba965a,
+        type: 2}
+    - target: {fileID: 7131905863047623444, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: characterScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: ab0e64121f2834317ac51c00c5cf140c,
         type: 2}
     - target: {fileID: 7131905863173438696, guid: f6c75a97fbb1b2345af4d40b8b59143f,
         type: 3}
@@ -231,6 +224,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131905863047623445, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: c40f885e148f51c4699c534b3a37a9b4,
+        type: 2}
+    - target: {fileID: 7131905863047623446, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b6d83631800bd56459bdbad8743e8a8b,
+        type: 3}
+    - target: {fileID: 7131905863047623446, guid: f6c75a97fbb1b2345af4d40b8b59143f,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7131905863173438699, guid: f6c75a97fbb1b2345af4d40b8b59143f,
         type: 3}

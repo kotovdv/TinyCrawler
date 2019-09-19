@@ -7,9 +7,12 @@ public class CharacterView : MonoBehaviour
 {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
+    [Header("Character settings")]
+    [SerializeField] private CharacterScriptableObject characterScriptableObject = default;
+    
+    [Header("Components settings")]
     [SerializeField] private Animator animator = default;
     [SerializeField] private SpriteRenderer spriteRenderer = default;
-    [SerializeField] private CharacterScriptableObject characterScriptableObject = default;
 
     private ICharacterEvents _characterEvents;
 
@@ -53,8 +56,8 @@ public class CharacterView : MonoBehaviour
     private void DisplayCharacter()
     {
         if (characterScriptableObject == null) return;
-        
-        spriteRenderer.sprite = characterScriptableObject.Sprite;
+
         animator.runtimeAnimatorController = characterScriptableObject.AnimatorController;
+        spriteRenderer.sprite = characterScriptableObject.Sprite;
     }
 }
