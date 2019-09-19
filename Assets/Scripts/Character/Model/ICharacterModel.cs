@@ -15,7 +15,6 @@ public interface ICharacterModel
     Vector2 MovementDirection { get; set; }
 
     IWeapon Weapon { get; set; }
-    Transform HandPosition { get; }
 
     bool CanAttack { get; set; }
     float AttackTimerSec { get; set; }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7131905863047623447}
   - component: {fileID: 7131905863047623445}
   - component: {fileID: 7131905863047623444}
-  - component: {fileID: 7131905863047623450}
+  - component: {fileID: 7131905863810677412}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -73,13 +73,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   animator: {fileID: 7131905863047623445}
   spriteRenderer: {fileID: 7131905863047623446}
   characterScriptableObject: {fileID: 0}
---- !u!114 &7131905863047623450
+--- !u!114 &7131905863810677412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,12 +149,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7131905863047623440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e6fbd81516645ebb4cbe5e285403020, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa834bf044344619652d3894cba251a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponTransform: {fileID: 0}
-  weaponCollider: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  weaponView: {fileID: 7131905863810677413}
+  weaponTrasnform: {fileID: 7131905863173438698}
+  weaponGripTransform: {fileID: 7131905864655142842}
+  weaponBoxCollider: {fileID: 7131905863173438696}
+  characterView: {fileID: 7131905863047623444}
+  characterRigidBody: {fileID: 7131905863047623447}
 --- !u!1 &7131905863173438693
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +169,7 @@ GameObject:
   - component: {fileID: 7131905863173438698}
   - component: {fileID: 7131905863173438699}
   - component: {fileID: 7131905863173438696}
+  - component: {fileID: 7131905863810677413}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -262,6 +266,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
+--- !u!114 &7131905863810677413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131905863173438693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6fbd81516645ebb4cbe5e285403020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7131905863173438699}
+  weaponScriptableObject: {fileID: 0}
+  weaponTransform: {fileID: 7131905863173438698}
+  weaponGripTransform: {fileID: 7131905864655142842}
 --- !u!1 &7131905864655142837
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7131905864655142837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7131905863173438698}

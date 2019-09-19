@@ -1,14 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.PlayerInput;
-using Zenject;
 
 public class CharacterController : MonoBehaviour
 {
     private Camera _camera;
     private ICharacter _character;
 
-    [Inject]
     public void Construct(Camera cam, ICharacter character)
     {
         _camera = cam;
@@ -28,7 +25,7 @@ public class CharacterController : MonoBehaviour
         _character.Run(value.Get<Vector2>());
     }
 
-    private void OnDash(InputValue value)
+    private void OnDash()
     {
         _character.Dash();
     }

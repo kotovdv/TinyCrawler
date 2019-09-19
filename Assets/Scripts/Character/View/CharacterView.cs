@@ -1,57 +1,43 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem.PlayerInput;
-using Zenject;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class CharacterView : MonoBehaviour
 {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private CharacterScriptableObject characterScriptableObject;
+    [SerializeField] private Animator animator = default;
+    [SerializeField] private SpriteRenderer spriteRenderer = default;
+    [SerializeField] private CharacterScriptableObject characterScriptableObject = default;
 
-    private ICharacterModelEvents _characterModelEvents;
+    private ICharacterEvents _characterEvents;
 
-    private MovementMechanics _movementMechanics;
-
-    [Inject]
-    public void Construct(
-        MovementMechanics movementMechanics,
-        ICharacterModelEvents characterModelEvents
-    )
+    public void Construct(ICharacterEvents characterEvents)
     {
-        _movementMechanics = movementMechanics;
-        _characterModelEvents = characterModelEvents;
+        _characterEvents = characterEvents;
     }
 
-    private void Awake()
+    private void Start()
     {
-        spriteRenderer.sprite = characterScriptableObject.Sprite;
-        animator.runtimeAnimatorController = characterScriptableObject.AnimatorController;
+        DisplayCharacter();
+    }
+
+    private void OnValidate()
+    {
+        DisplayCharacter();
     }
 
     private void OnEnable()
     {
-        _characterModelEvents.OnIsRunningChanged += HandleRunAnimation;
-        _characterModelEvents.OnIsFacingRightChanged += HandleFacingDirection;
+        _characterEvents.OnIsRunningChanged += HandleRunAnimation;
+        _characterEvents.OnIsFacingRightChanged += HandleFacingDirection;
     }
 
     private void OnDisable()
     {
-        _characterModelEvents.OnIsRunningChanged -= HandleRunAnimation;
-        _characterModelEvents.OnIsFacingRightChanged -= HandleFacingDirection;
-    }
-
-    private void OnRun(InputValue value)
-    {
-        _movementMechanics.Run(value.Get<Vector2>());
-    }
-
-    private void OnDash(InputValue value)
-    {
-        _movementMechanics.Dash();
+        _characterEvents.OnIsRunningChanged -= HandleRunAnimation;
+        _characterEvents.OnIsFacingRightChanged -= HandleFacingDirection;
     }
 
     private void HandleFacingDirection(bool isFacingRight)
@@ -62,5 +48,13 @@ public class CharacterView : MonoBehaviour
     private void HandleRunAnimation(bool isRunning)
     {
         animator.SetBool(IsRunning, isRunning);
+    }
+
+    private void DisplayCharacter()
+    {
+        if (characterScriptableObject == null) return;
+        
+        spriteRenderer.sprite = characterScriptableObject.Sprite;
+        animator.runtimeAnimatorController = characterScriptableObject.AnimatorController;
     }
 }

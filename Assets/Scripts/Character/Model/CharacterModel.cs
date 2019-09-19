@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class CharacterModel : ICharacterModel, ICharacterModelEvents
+public class CharacterModel : ICharacterModel
 {
     private readonly Rigidbody2D _rigidBody;
 
@@ -11,10 +11,14 @@ public class CharacterModel : ICharacterModel, ICharacterModelEvents
     public event Action<bool> OnIsRunningChanged;
     public event Action<bool> OnIsFacingRightChanged;
 
-    public CharacterModel(Transform handPosition, Rigidbody2D rigidbody)
+    public CharacterModel(
+        Transform weaponGripPosition,
+        Rigidbody2D rigidbody,
+        IWeapon weapon)
     {
         _rigidBody = rigidbody;
-        HandPosition = handPosition;
+        WeaponGripTransform = weaponGripPosition;
+        Weapon = weapon;
     }
 
     public float Speed { get; } = 7.0F;
@@ -53,7 +57,7 @@ public class CharacterModel : ICharacterModel, ICharacterModelEvents
         set => _rigidBody.velocity = value;
     }
 
-    public Transform HandPosition { get; private set; }
+    public Transform WeaponGripTransform { get; private set; }
 
     private static void HandleFieldChange<T>(ref T field, T newValue, Action<T> fieldEvent) where T : IEquatable<T>
     {

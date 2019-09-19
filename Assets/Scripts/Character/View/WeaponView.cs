@@ -1,45 +1,32 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.PlayerInput;
-using Zenject;
 
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class WeaponView : MonoBehaviour
 {
-    [SerializeField] private Transform weaponTransform;
-    [SerializeField] private BoxCollider2D weaponCollider;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer = default;
+    [SerializeField] private WeaponScriptableObject weaponScriptableObject = default;
 
-    private Camera _camera;
-    private WeaponScriptableObject _weapon;
-    private CombatMechanics _combatMechanics;
+    [SerializeField] private Transform weaponTransform = default;
+    [SerializeField] private Transform weaponGripTransform = default;
+    public WeaponScriptableObject WeaponScriptableObject => weaponScriptableObject;
 
-    [Inject]
-    public void Construct(
-        Camera cam,
-        WeaponScriptableObject initialWeapon,
-        CombatMechanics combatMechanics)
+    private void Start()
     {
-        _camera = cam;
-        _weapon = initialWeapon;
-        _combatMechanics = combatMechanics;
+        DisplayWeapon();
     }
 
-    private void Awake()
+    private void OnValidate()
     {
-        SetWeapon(_weapon);
+        DisplayWeapon();
     }
 
-    private void OnAttack(InputValue value)
+    private void DisplayWeapon()
     {
-        var screenPosition = Mouse.current.position.ReadValue();
-        var worldPosition = _camera.ScreenToWorldPoint(screenPosition);
+        if (weaponScriptableObject == null) return;
 
-        _combatMechanics.Attack(worldPosition);
-    }
-
-    private void SetWeapon(WeaponScriptableObject weapon)
-    {
-        spriteRenderer.sprite = weapon.Sprite;
-        _combatMechanics.EquipWeapon(new Weapon(weaponTransform, weaponCollider, weapon));
+        spriteRenderer.sprite = weaponScriptableObject.Sprite;
+        weaponGripTransform.localRotation = weaponScriptableObject.GripRotation;
+        weaponTransform.localPosition = weaponScriptableObject.GripPosition;
     }
 }
